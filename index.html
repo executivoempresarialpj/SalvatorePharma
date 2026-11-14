@@ -92,6 +92,60 @@
  .hero .metric strong{font-size:18px}
  .hero .metric span{font-size:9px;line-height:1.35;display:block}
 }
+
+/* HOTFIX MOBILE 2026-11: separar fisicamente video 16:9 e conteudo.
+   Evita altura vazia, sobreposicoes e conflito de flex no Safari iOS. */
+@media (max-width: 600px) {
+  #inicio.hero {
+    display:block !important;
+    width:100% !important;
+    min-height:0 !important;
+    height:auto !important;
+    aspect-ratio:auto !important;
+    overflow:hidden;
+    background:#080e17;
+    isolation:isolate;
+  }
+  #inicio.hero > video.hero-video {
+    display:block !important;
+    position:relative !important;
+    inset:auto !important;
+    top:auto !important;
+    left:auto !important;
+    right:auto !important;
+    bottom:auto !important;
+    width:100% !important;
+    height:auto !important;
+    max-width:100% !important;
+    aspect-ratio:16/9 !important;
+    object-fit:contain !important;
+    object-position:center center !important;
+    transform:none !important;
+    margin:0 !important;
+    padding:0 !important;
+    z-index:1 !important;
+    background:#080e17 !important;
+  }
+  #inicio.hero > img.hero-photo {display:none !important;}
+  #inicio.hero::before,#inicio.hero::after {content:none !important;display:none !important;}
+  #inicio.hero > .shell {
+    display:block !important;
+    position:relative !important;
+    width:100% !important;
+    height:auto !important;
+    min-height:0 !important;
+    margin:0 auto !important;
+    padding:22px 17px 27px !important;
+    z-index:3 !important;
+    background:linear-gradient(180deg,#101722,#080e17);
+  }
+  #inicio.hero .shell::after {display:none !important;}
+  #inicio.hero .hero-actions {margin-top:18px;}
+  #inicio.hero .metrics {display:grid !important;grid-template-columns:repeat(3,minmax(0,1fr)) !important;margin-top:20px;gap:7px;}
+  #inicio.hero .metric {min-width:0;padding:12px 8px;}
+  #inicio.hero h1 {margin-top:12px;font-size:clamp(31px,8.4vw,42px);}
+  #inicio.hero p {font-size:12px;max-width:100%;}
+}
 </style></head>
 <body>
 <div class="topline">ACERVO INSTITUCIONAL • MATERIAL DEMONSTRATIVO • SEM COMERCIALIZAÇÃO</div>
