@@ -1,0 +1,57 @@
+# CONFIGURAÇÃO NECESSÁRIA ANTES DO PRIMEIRO LOGIN
+# 1) Troque USUARIO_GITHUB/REPOSITORIO pelo endereço real do seu repositório.
+# 2) Configure um proxy OAuth GitHub e troque a URL EXEMPLO do base_url.
+#    O GitHub Pages não fornece autenticação OAuth por si só.
+backend:
+  name: github
+  repo: "USUARIO_GITHUB/REPOSITORIO"
+  branch: main
+  base_url: "https://SEU-PROXY-OAUTH.example.com"
+  auth_endpoint: auth
+
+local_backend: true
+site_url: "https://USUARIO_GITHUB.github.io/REPOSITORIO/"
+media_folder: "assets/uploads"
+public_folder: "assets/uploads"
+
+collections:
+  - name: "catalogo"
+    label: "Catálogo de produtos"
+    files:
+      - label: "Produtos (editar, criar, remover)"
+        name: "produtos"
+        file: "data/catalog.json"
+        format: json
+        fields:
+          - label: "Produtos"
+            name: "products"
+            widget: list
+            summary: "{{fields.brand}} · {{fields.name}}"
+            collapsed: true
+            allow_add: true
+            fields:
+              - {label: "ID interno único", name: "uid", widget: "string", hint: "Use um ID exclusivo, como item-0445"}
+              - {label: "ID original", name: "id", widget: "string", required: false}
+              - {label: "Nome do produto", name: "name", widget: "string"}
+              - {label: "Marca", name: "brand", widget: "string"}
+              - {label: "Categoria (ex.: GH, INJETAVEL, ORAL)", name: "category", widget: "string", hint: "Preserve a categoria original ou use GH / INJETAVEL / ORAL / ESPECIAIS / OUTROS"}
+              - {label: "Apresentação / descrição", name: "desc", widget: "text", required: false}
+              - {label: "Família / linha", name: "family", widget: "string", required: false}
+              - {label: "Preço informado no material (R$)", name: "price", widget: "number", value_type: "float", step: 0.01, min: 0, required: false}
+              - {label: "Foto", name: "img", widget: "image", required: false}
+  - name: "site"
+    label: "Aparência e capa"
+    files:
+      - label: "Configurações do site"
+        name: "configuracoes"
+        file: "data/settings.json"
+        format: json
+        fields:
+          - {label: "Frase pequena da capa", name: "eyebrow", widget: "string"}
+          - {label: "Título da capa (primeira parte)", name: "title", widget: "string"}
+          - {label: "Título da capa (destaque dourado)", name: "title_highlight", widget: "string"}
+          - {label: "Descrição da capa", name: "description", widget: "text"}
+          - {label: "Texto do botão principal", name: "cta_label", widget: "string"}
+          - {label: "Vídeo da capa (MP4)", name: "video", widget: "file", media_folder: "/assets/uploads", public_folder: "assets/uploads", required: false}
+          - {label: "Imagem alternativa da capa", name: "hero_image", widget: "image", required: false}
+          - {label: "Identificação no topo", name: "notice", widget: "string"}
