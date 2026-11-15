@@ -1,0 +1,79 @@
+
+media:
+  input: assets/uploads
+  output: assets/uploads
+
+content:
+  - name: produtos
+    label: Catálogo de Produtos
+    type: file
+    path: data/catalog.json
+    format: json
+    fields:
+      - name: products
+        label: Produtos cadastrados
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{name}"
+        fields:
+          - name: uid
+            label: Código único
+            type: string
+            required: true
+          - name: id
+            label: Código original
+            type: string
+          - name: name
+            label: Nome do produto
+            type: string
+          - name: brand
+            label: Marca
+            type: string
+          - name: category
+            label: Categoria
+            type: string
+          - name: desc
+            label: Descrição
+            type: text
+          - name: family
+            label: Linha
+            type: string
+          - name: price
+            label: Preço
+            type: number
+          - name: img
+            label: Imagem do produto
+            type: image
+
+  - name: aparencia
+    label: Aparência e Capa
+    type: file
+    path: data/settings.json
+    format: json
+    fields:
+      - name: eyebrow
+        label: Frase superior
+        type: string
+      - name: title
+        label: Título principal
+        type: string
+      - name: title_highlight
+        label: Título dourado
+        type: string
+      - name: description
+        label: Descrição da capa
+        type: text
+      - name: cta_label
+        label: Texto do botão
+        type: string
+      - name: video
+        label: Vídeo da capa
+        type: file
+      - name: hero_image
+        label: Imagem da capa
+        type: image
+      - name: notice
+        label: Aviso superior
+        type: string
